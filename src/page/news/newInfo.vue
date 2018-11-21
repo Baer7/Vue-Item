@@ -10,11 +10,13 @@
 				</li>
 		</ul>
         <div class="info-content" v-html="newsInfoList.content"></div>
+        <comment :id=this.id></comment>
     </div>
 </template>
 
 <script>
     import {Toast} from 'mint-ui';
+    import Comment from '../comment'
     export default {
         data(){
             return {
@@ -38,6 +40,9 @@
                    }       
                 })
             }
+        },
+        components:{
+            comment:Comment
         }
     }
 </script>
