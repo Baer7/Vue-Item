@@ -24,7 +24,9 @@
 			</router-link>
 		</nav>
     <!-- 内容 -->
-  <router-view></router-view>
+  <transition>
+      <router-view></router-view>
+  </transition>
  
 
   </div>
@@ -43,5 +45,19 @@ methods:{
  .app-container{
    padding-top: 40px;
    padding-bottom: 50px;
+   overflow-x: hidden
+ }
+
+ .v-enter{
+   transform: translateX(100%);
+   opacity:0;
+ }
+ .v-leave-to{
+    transform: translateX(-100%);
+   opacity:0;
+   position: absolute;
+ }
+ .v-enter-active,.v-leave-active{
+   transition: all .6s ease
  }
 </style>

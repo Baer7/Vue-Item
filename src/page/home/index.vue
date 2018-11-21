@@ -2,9 +2,10 @@
     <div class="home-container">
         <!-- 轮播 -->
         <mt-swipe :auto="4000" class="banner">
-        <mt-swipe-item>1</mt-swipe-item>
-        <mt-swipe-item>2</mt-swipe-item>
-        <mt-swipe-item>3</mt-swipe-item>
+        <mt-swipe-item v-for="(item,i) in bannerList" :key="i">
+            <a :href="item.url"><img :src="item.img" alt=""></a>
+        </mt-swipe-item>
+        
         </mt-swipe>
         
         <!-- 9宫格 -->
@@ -32,7 +33,31 @@
     </div>
 </template>
 <script>
-    
+import { Toast } from "mint-ui";
+   export default {
+       data(){
+           return {
+               bannerList:[]
+           }
+       },
+       created(){
+           this.GetBanner()
+       },
+       methods:{
+            GetBanner(){
+              this.$http.get('http://www.lovegf.cn:8899/api/getlunbo').then(result=>{
+                  console.log(result.body);
+                  if(result.body.status==0){
+                      this.bannerList=result.body.message
+                  }else{
+                      Toast('获取图片失败')
+                  }
+              })
+           }
+       }
+
+        
+   } 
 </script>
 <style lang="less">
 .home-container{
@@ -48,6 +73,16 @@
       }
       &:nth-child(3){
           background-color: yellow;
+      } 
+      a{
+          display: block;
+          width: 100%;
+          height: 100%;
+          img{
+              width: 100%;
+              height: 100%;
+          
+          }
       }
      }
       

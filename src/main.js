@@ -2,9 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
-
+import Resource from 'vue-resource'
 // 2. 手动安装 
 Vue.use(MintUI)
+Vue.use(Resource) 
 //组件
 import { Header,Swipe, SwipeItem } from 'mint-ui';
 Vue.component(Header.name, Header);
