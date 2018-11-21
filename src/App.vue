@@ -33,7 +33,7 @@
 </template>
 <script>
 import { Toast } from 'mint-ui';
-export default {
+export default { 
 methods:{
   btn(){
     Toast('提示信息');
