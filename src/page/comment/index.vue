@@ -12,7 +12,7 @@
             </li>
             
         </ul>
-        <mt-button type="danger" size="large" plain>加载更多</mt-button>
+        <mt-button type="danger" size="large" plain @click="more">加载更多</mt-button>
     </div>
 </template>
 
@@ -23,7 +23,7 @@ import { Toast } from "mint-ui";
         data(){
             return {
                 text:'',
-                commentList:'',
+                commentList:[],
                 pageindex:1
             }
         },
@@ -35,8 +35,15 @@ import { Toast } from "mint-ui";
              GetComment(){
             this.$http.get("api/getcomments/"+this.id+"?pageindex="+this.pageindex).then(result=>{
                 console.log(result.body);
-                if(result.body.status===0){
-                    this.commentList=result.body.message
+                if(result.body.status===0 ){
+                    // if(bool){
+                        
+                    //     this.commentList=result.body.message
+                    // }else{
+                        
+                         this.commentList=this.commentList.concat(result.body.message)
+                    // }
+                    // console.log(this.commentList);
                 }else{
                     Toast("获取评论失败！");
                 }
@@ -44,18 +51,36 @@ import { Toast } from "mint-ui";
             })
         },
         add(){
-            this.$http.post('api/postcomment/'+this.id,{content:this.text}).then(result=>{
+            if(this.text.trim().length===0){
+                 Toast("请输入内容");
+            }else{
+                this.$http.post('api/postcomment/'+this.id,{content:this.text}).then(result=>{
                 console.log(result.body);
                 if(result.body.status===0){
-                    Toast("提交成功");
+                    // Toast("提交成功");
+                    // Toast({
+                    //     message: '提交成功',
+                    //     position: 'bottom',
+                    //     duration: 1000
+                    // });
+                     this.text=''
+                     this.pageindex=1
+                     this.commentList=[]
+                     this.GetComment()
                 }else{
+
                      Toast("提交失败");
                 }
-                 this.text=''
-                 this.GetComment()
+                 
             })
+            }
            
-        }
+           
+        },
+         more(){
+            this.pageindex++;
+            this.GetComment()
+            }
         }
        
        

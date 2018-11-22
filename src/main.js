@@ -4,6 +4,7 @@ import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import Resource from 'vue-resource'
 
+
 // 导入格式化时间的插件
 import moment from 'moment'
 // 定义全局的时间过滤器
@@ -16,6 +17,7 @@ Vue.use(MintUI)
 Vue.use(Resource) 
 
 Vue.http.options.root='http://www.lovegf.cn:8899/'
+Vue.http.options.emulateJSON = true
 
 //mint-ui组件
 import { Header,Swipe, SwipeItem } from 'mint-ui';

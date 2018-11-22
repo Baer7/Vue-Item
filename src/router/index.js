@@ -8,6 +8,7 @@ import ShopcarComponent from '../page/shopcar'
 import SearchComponent from '../page/search'
 import NewsList from '../page/news'
 import NewsInfo from '../page/news/newInfo.vue'
+import PhotosList from '../page/photos/photosList.vue'
 var router = new VueRouter({
   linkActiveClass:'mui-active',
   routes:[
@@ -18,6 +19,7 @@ var router = new VueRouter({
       {path:'/search',component:SearchComponent},
       {path:'/home/newslist',component:NewsList},
       {path:'/home/newsInfo/:id',component:NewsInfo},
+      {path:'/home/photosList',component:PhotosList},
    ]
 })
 export default router

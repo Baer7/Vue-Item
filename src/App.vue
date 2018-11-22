@@ -33,6 +33,13 @@
 </template>
 <script>
 import { Toast } from 'mint-ui';
+//解决mui中a标签不能跳转问题
+import mui from "../src/lib/mui/js/mui.min.js";
+mui('body').on('tap','a',function(){
+    window.top.location.href=this.href;
+});
+
+
 export default { 
 methods:{
   btn(){
