@@ -58,11 +58,11 @@ import { Toast } from "mint-ui";
                 console.log(result.body);
                 if(result.body.status===0){
                     // Toast("提交成功");
-                    // Toast({
-                    //     message: '提交成功',
-                    //     position: 'bottom',
-                    //     duration: 1000
-                    // });
+                    Toast({
+                        message: '提交成功',
+                        position: 'bottom',
+                        duration: 1000
+                    });
                      this.text=''
                      this.pageindex=1
                      this.commentList=[]

@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <!-- 顶部 -->
-  <mt-header fixed title="Vue商城"></mt-header>
+  <mt-header fixed title="Vue商城" class="header"></mt-header>
   <!-- 底部 -->
   <nav class="mui-bar mui-bar-tab">
 			<router-link class="mui-tab-item" to="/home">
@@ -49,10 +49,15 @@ methods:{
 }
 </script>
 <style lang="less">
+
  .app-container{
    padding-top: 40px;
    padding-bottom: 50px;
-   overflow-x: hidden
+   overflow-x: hidden;
+  .header{
+    z-index: 999;
+  }
+   
  }
 
  .v-enter{
