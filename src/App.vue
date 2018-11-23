@@ -1,7 +1,11 @@
 <template>
   <div class="app-container">
     <!-- 顶部 -->
-  <mt-header fixed title="Vue商城" class="header"></mt-header>
+  <mt-header fixed title="Vue商城" class="header">
+    <!-- <router-link to="/" slot="left">
+    <mt-button icon="back">返回</mt-button>
+  </router-link> -->
+  </mt-header>
   <!-- 底部 -->
   <nav class="mui-bar mui-bar-tab">
 			<router-link class="mui-tab-item" to="/home">

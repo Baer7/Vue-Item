@@ -43,7 +43,7 @@ Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
 Vue.component(Button.name, Button);
 
-//底部
+//导入MUI
 import './lib/mui/css/mui.min.css'
 import './lib/mui/css/icons-extra.css'
 //路由

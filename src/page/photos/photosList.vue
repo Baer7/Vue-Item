@@ -1,30 +1,26 @@
 <template>
     <div class="photosList-container">
         <!-- 顶部滑动条 -->
-    <div id="slider" class="mui-slider">
-    <div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-        <div class="mui-scroll" >
-            <!-- ['mui-control-item' ,item.id===0?'mui-active':''] -->
-            <span :class="{'mui-control-item':true,'mui-active':item.id===0}" v-for="item in photosData" :key="item.id" @click="GetPhotos(item.id)">
-                {{item.title}}
-            </span>
-  
-        
-    </div>
-    </div>
-    </div>
-      <!-- 图片栏 -->
-   <ul class="photos-container">
-      
-        <router-link v-for="item in photosList" :key="item.id" :to="'/home/photoInfo/'+item.id" tag="li">
-                <img v-lazy="item.img_url" lazy="loading">
-                <div class="photos-data">
-                    <h1>{{item.title}}</h1>
-                    <div>{{item.zhaiyao}}</div>
+        <div id="slider" class="mui-slider">
+            <div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+                <div class="mui-scroll" >
+                    <!-- ['mui-control-item' ,item.id===0?'mui-active':''] -->
+                    <span :class="{'mui-control-item':true,'mui-active':item.id===0}" v-for="item in photosData" :key="item.id" @click="GetPhotos(item.id)">
+                        {{item.title}}
+                    </span>
                 </div>
-        </router-link >
-        
-    </ul>
+            </div>
+        </div>
+      <!-- 图片栏 -->
+         <ul class="photos-container">
+            <router-link v-for="item in photosList" :key="item.id" :to="'/home/photoInfo/'+item.id" tag="li">
+                    <img v-lazy="item.img_url" lazy="loading">
+                    <div class="photos-data">
+                        <h1>{{item.title}}</h1>
+                        <div>{{item.zhaiyao}}</div>
+                    </div>
+            </router-link >
+        </ul>
 
    
     </div>

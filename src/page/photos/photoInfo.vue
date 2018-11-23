@@ -1,17 +1,19 @@
 <template>
     <div class="photoInfo-container">
-       <!-- 大标题 -->
-    <h3 class="title">{{photoInfo.title }}</h3>
-    <!-- 子标题 -->
-    <p class="subtitle">
-      <span>发表时间：{{photoInfo.add_time | dataTime}}</span>
-      <span>点击：{{photoInfo.click}}次</span>
-    </p>
-    <hr>
-    <img class="preview-img" v-for="(item,index) in list" :src="item.src" height="100" @click="$preview.open(index, list)" :key="item.src">
-
-    <div class="content" v-html="photoInfo.content"></div>
-    <comment :id=this.id></comment>
+        <!-- 大标题 -->
+        <h3 class="title">{{photoInfo.title }}</h3>
+        <!-- 子标题 -->
+        <p class="subtitle">
+        <span>发表时间：{{photoInfo.add_time | dataTime}}</span>
+        <span>点击：{{photoInfo.click}}次</span>
+        </p>
+        <hr>
+        <!-- 缩略图 -->
+        <img class="preview-img" v-for="(item,index) in list" :src="item.src" height="100" @click="$preview.open(index, list)" :key="item.src">
+        <!-- 内容 -->
+        <div class="content" v-html="photoInfo.content"></div>
+        <!-- 评论组件 -->
+        <comment :id=this.id></comment>
     </div>
 </template>
 
@@ -44,7 +46,9 @@
             this.getphotoInfo(),
             this.getPhotoPreview()
         },
+
         methods:{
+            //详情信息
             getphotoInfo(){
                 this.$http.get('api/getimageInfo/'+this.id).then(result=>{
                     // console.log(result.body.message[0]);
@@ -54,6 +58,7 @@
                     
                 })
             },
+            //缩略图片
             getPhotoPreview(){
                 this.$http.get('api/getthumimages/'+this.id).then(result=>{
                     console.log(result.body.message);
