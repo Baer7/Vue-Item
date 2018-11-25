@@ -1,5 +1,12 @@
 <template>
     <div class="goodsInfo-container">
+            <transition 
+                @before-enter="beforeEnter"  	
+                @enter="enter"		  
+                @after-enter="afterEnter"	
+            >
+               <div class="qiu" v-show="flag" ref="ball"></div> 
+            </transition>
             <div class="mui-card">
 				<div class="mui-card-content">
 					<div class="mui-card-content-inner">
@@ -16,10 +23,10 @@
                             销售价:<span>￥{{goodsList.sell_price}}</span>
                         </p>
                         <!-- 加减 -->
-                        <numbox></numbox>
+                        <numbox :max="goodsList.stock_quantity"></numbox>
                        
                         <mt-button type="primary">立即购买</mt-button>
-                        <mt-button type="danger">加入购物车</mt-button>
+                        <mt-button type="danger" @click="flag=!flag">加入购物车</mt-button>
 					</div>
 				</div>
 				
@@ -51,7 +58,8 @@
             return {
                 id:this.$route.params.id,
                 srcData:[],
-                goodsList:[]
+                goodsList:[],
+                flag:false
             }
         },
         created(){
@@ -87,8 +95,26 @@
             //商品评论
             GoodsComment(id){
                 this.$router.push({name:'goodsComment',params: {id}})
+            },
+            beforeEnter(el){
+                el.style.transform='translate(0px,0px)'
+            },
+            enter(el,done){
+                const qiu = this.$refs.ball.getBoundingClientRect()
+                const page = document.getElementById('weizhi').getBoundingClientRect()
+                const offsetX = page.left-qiu.left
+                const offsetY = page.top-qiu.top
+                el.offsetTop
+                el.style.transform=`translate(${offsetX}px,${offsetY}px)`
+                el.style.transition="all 1s ease "
+                // done()
+            },
+            afterEnter(el){
+                console.log('ok');
+               this.flag=!this.flag
+                
             }
-           
+
         },
         components:{
             banner, 
@@ -99,6 +125,16 @@
 
 <style lang="less">
     .goodsInfo-container{
+        .qiu{
+            width: 15px;
+            height: 15px;
+            background-color: red;
+            border-radius: 50px;
+            position: absolute;
+            left: 150px;
+            top:350px;
+            z-index: 999;
+        }
         background-color: #eee;
         overflow: hidden;
         .mui-card-content-inner{
