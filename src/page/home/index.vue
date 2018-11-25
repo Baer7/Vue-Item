@@ -1,12 +1,7 @@
 <template>
     <div class="home-container">
         <!-- 轮播 -->
-        <mt-swipe :auto="4000" class="banner">
-        <mt-swipe-item v-for="(item,i) in bannerList" :key="i">
-            <a :href="item.url"><img :src="item.img" alt=""></a>
-        </mt-swipe-item>
-        
-        </mt-swipe>
+       <banner :bannerList="bannerList" :isfull="true"></banner>
         
         <!-- 9宫格 -->
         <ul class="mui-table-view mui-grid-view mui-grid-9">
@@ -41,6 +36,8 @@
 </template>
 <script>
 import { Toast } from "mint-ui";
+//导入轮播
+import banner from '../comment/banner.vue'
    export default {
        data(){
            return {
@@ -61,6 +58,10 @@ import { Toast } from "mint-ui";
                   }
               })
            }
+       },
+       //注册轮播
+       components:{
+           banner
        }
 
         
@@ -68,32 +69,7 @@ import { Toast } from "mint-ui";
 </script>
 <style lang="less">
 .home-container{
-    //轮播
-    .banner{
-      height: 200px;
-     .mint-swipe-item{
-      &:nth-child(1){
-          background-color: pink;
-      }
-      &:nth-child(2){
-          background-color: skyblue;
-      }
-      &:nth-child(3){
-          background-color: yellow;
-      } 
-      a{
-          display: block;
-          width: 100%;
-          height: 100%;
-          img{
-              width: 100%;
-              height: 100%;
-          
-          }
-      }
-     }
-      
-    }
+    
     //9宫格
     .mui-grid-view{
         background-color: #fff;
